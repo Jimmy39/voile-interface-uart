@@ -30,38 +30,58 @@ typedef const struct{
     voile_status_t (*Init)(void *, uint32_t);
     
     /**
-     * @brief Transmit message by uart
+     * @brief Transmit byte by uart
      * 
      * @param[in] name :[voile_const_uart_t *] This uart object.
-     * @param[in] value :[uint8_t *] Message for transmit.
-     * @param[in] byte :[uint8_t] Byte of message.
+     * @param[in] value :[uint8_t] Byte for transmit.
      * @return voile_status_t defined in common.h
      *
      * @par Sample
      * @code
-     * myuart.Operate->Transmit(&myuart, "Hello world", 12);
+     * myuart.Operate->Transmit(&myuart, 'H');
      * @endcode
      *  
      */
-    voile_status_t (*Transmit)(void *, uint8_t *, uint8_t);
+    voile_status_t (*Transmit)(void *, uint8_t);
 
     /**
-     * @brief Receive message from uart
+     * @brief Receive byte from uart
      * 
      * @param[in] name :[voile_const_uart_t *] This uart object.
-     * @param[in] value :[uint8_t *] Message for receive.
-     * @param[in] byte :[uint8_t] Byte of message.
+     * @param[out] value :[uint8_t *] Byte for receive.
      * @return voile_status_t defined in common.h
      *
      * @par Sample
      * @code
-     * uint8_t buffer[20];
-     * myuart.Operate->Receive(&myuart, buffer, 20);
+     * uint8_t buffer;
+     * myuart.Operate->Receive(&myuart, &buffer);
      * @endcode
      *  
      */
-    voile_status_t (*Receive)(void *, uint8_t *, uint8_t);
-} voile_const_uartOperations_t;
+    voile_status_t (*Receive)(void *, uint8_t *);
+} voile_const_uartOperate_t;
+
+
+/**
+ * @brief Get something from uart
+ * 
+ */
+typedef const struct{
+    /**
+     * @brief Receive byte from uart
+     * 
+     * @param[in] name :[voile_const_uart_t *] This uart object.
+     * @return [uint8_t] Byte for receive.
+     *
+     * @par Sample
+     * @code
+     * uint8_t buffer;
+     * buffer = myuart.Get->Receive(&myuart);
+     * @endcode
+     *  
+     */
+    uint8_t (*Receive)(void *);
+} voile_const_uartGet_t;
 
 
 /**
@@ -69,7 +89,8 @@ typedef const struct{
  * 
  */
 typedef const struct{
-    voile_const_uartOperations_t *Operate;  ///< Operate the uart
+    voile_const_uartOperate_t *Operate; ///< Operate the uart
+    voile_const_uartGet_t *Get;         ///< Get date or status from uart
 } voile_const_uart_t;
 
 
