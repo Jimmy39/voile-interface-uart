@@ -7,7 +7,8 @@ Define class uart in voile library
  * 
  */
 typedef const struct{
-    voile_const_uartOperations_t *Operate;  ///< Operate the uart
+    voile_const_uartOperate_t *Operate; ///< Operate the uart
+    voile_const_uartGet_t *Get;         ///< Get date or status from uart
 } voile_const_uart_t;
 ```
 
