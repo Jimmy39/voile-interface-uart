@@ -6,7 +6,8 @@ struct voile_uart_interface_struct {
 
     void (*send)(voile_const_uart_t *uart_p, uint8_t *data_p, uint8_t length);
 
-    uint8_t (*get)(voile_const_uart_t *uart_p, uint8_t *data_p, uint8_t length);
+    uint8_t (*receive)(
+        voile_const_uart_t *uart_p, uint8_t *data_p, uint8_t length);
 
-    uint8_t (*getflag)(voile_const_uart_t *uart_p, voile_uart_flag_t flag);
+    uint8_t (*getFlag)(voile_const_uart_t *uart_p, voile_uart_flag_t flag);
 };

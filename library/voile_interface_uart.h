@@ -86,9 +86,9 @@ static inline void Vuart_send(
  * @endcode
  *
  */
-static inline void Vuart_get(
+static inline void Vuart_receive(
     voile_const_uart_t *uart_p, uint8_t *data_p, uint8_t length) {
-    (*uart_p)->get(uart_p, data_p, length);
+    (*uart_p)->receive(uart_p, data_p, length);
 }
 
 /**
@@ -104,8 +104,8 @@ static inline void Vuart_get(
  * @endcode
  *
  */
-static inline void Vuart_getByte(voile_const_uart_t *uart_p) {
-    return (*uart_p)->get(uart_p, NULL, 1);
+static inline uint8_t Vuart_receiveByte(voile_const_uart_t *uart_p) {
+    return (*uart_p)->receive(uart_p, NULL, 1);
 }
 
 /**
@@ -123,7 +123,7 @@ static inline void Vuart_getByte(voile_const_uart_t *uart_p) {
  */
 static inline bool Vuart_getFlag(
     voile_const_uart_t *uart_p, voile_uart_flag_t flag) {
-    return (*uart_p)->getflag(uart_p, flag);
+    return (*uart_p)->getFlag(uart_p, flag);
 }
 
 /**
